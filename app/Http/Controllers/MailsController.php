@@ -7,8 +7,10 @@ use App\Http\Requests\StoreContactUs;
 use App\Mail\ContactanosMailable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\NewUserMailable;
+use App\Mail\NewCourseMailable;
 
-class ContactUsController extends Controller
+class MailsController extends Controller
 {
     
     public function index()
@@ -31,6 +33,28 @@ class ContactUsController extends Controller
         session()->flash('info', 'Bien, '.$name.'. Has enviado el mensaje con exito a la casilla '.$email.'!');
 
         return redirect()->route('contactUs.index');
+
+    }
+
+    public function newUser(Request $request) 
+    {
+
+        Mail::to('emmadibe33@gmail.com')
+            ->send(new NewUserMailable( $request->all()));
+        //Los métodos to() y send() son métodos ESTÁTICOS. Esto quiere decir que solo pueden ser llamados directamente desde la clase, y no desde una instancia de la misma. Por lo tanto, no podría crear una instancia de la clase Mail llamada, por ejemplo, $mail, y llamar al método (->) send o to desde dicha instancia.
+
+        // $name =  $request->name;
+        //$email =  $request->email;
+        
+       // session()->flash('info', 'Bien, '.$name.'. Has enviado el mensaje con exito a la casilla '.$email.'!');
+
+    }
+
+    public function newCourse(Request $request)
+    {
+
+        Mail::to('emmadibe33@mail.com')
+        ->send(new NewCourseMailable($request->all()));
 
     }
 

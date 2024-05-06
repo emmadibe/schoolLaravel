@@ -58,5 +58,15 @@
     <?php echo e($courses->links()); ?>
 
 
+    <?php if(session('info')): ?>
+
+        <script>
+
+            alert("<?php echo e(session('info')); ?>")
+
+        </script>
+
+    <?php endif; ?>
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.plantilla', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\mi proyecto\escuelaLaravel\escuelaLaravel\resources\views/courses/index.blade.php ENDPATH**/ ?>

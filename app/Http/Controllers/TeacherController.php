@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Teacher;
 use App\Http\Requests\UpdateTeacher;
-use App\Mail\NewUser;
-use App\Http\Controllers\NewUserController;
+use App\Mail\NewUserMailable;
+use App\Http\Controllers\MailsController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -38,8 +38,8 @@ class TeacherController extends Controller
         $teacher -> password = $request -> password;
 
         //Yo deseo que, cuando se cree el usuario, se le mande un mail:
-        $newUser = new NewUserController;
-        $newUser->store($request);
+        $newUser = new MailsController;
+        $newUser->newUser($request);
 
         $teacher -> save();
 

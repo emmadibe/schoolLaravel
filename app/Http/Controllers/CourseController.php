@@ -7,6 +7,8 @@ use App\Http\Requests\StoreCourse;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateCourse;
 use Nette\Utils\Random;
+use App\Http\Controllers\MailsController;
+
 
 class CourseController extends Controller
 {
@@ -40,6 +42,10 @@ class CourseController extends Controller
         $course->teacherId = session()->get('teacherId');
 
         $course->save();
+
+        //Quiero que se le envíe un mail de forma automática al usuario avisándole que creó un nuevo curso. En el cuerpo del mail estarán los datos del curso.
+        $mail = new MailsController;
+        $mail->newCourse($request);
 
         return redirect()->route('courses.show', $course->courseId);
  

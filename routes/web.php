@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeContoller;
 
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\MailsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 
@@ -95,7 +95,7 @@ Route::view('we', 'we') -> name('we');
 
 ///////////////////////RUTA PARA CONTACTANOS:
 
-Route::controller(ContactUsController::class)->middleware('auth')->group(function(){
+Route::controller(MailsController::class)->middleware('auth')->group(function(){
 
     Route::get('contactUs', 'index')->name('contactUs.index');
 
