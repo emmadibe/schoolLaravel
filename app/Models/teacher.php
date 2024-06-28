@@ -24,6 +24,8 @@ class Teacher extends Authenticatable
         'name',
         'email',
         'password',
+        'photo',
+        'namePhoto',
     ];
 
     /**

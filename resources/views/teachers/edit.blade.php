@@ -6,7 +6,7 @@
 
     <h1><u><p>Hola, {{ $teacher->name }}. Acá podrás editar tu perfil</u></p></h1>
 
-    <form action="{{ route('teachers.update', $teacher ->teacherId) }}" method="POST">
+    <form action="{{ route('teachers.update', $teacher ->teacherId) }}" method="POST" enctype="multipart/form-data">
 
         @csrf
 
@@ -71,6 +71,17 @@
             <span>*{{ $message }}</span>
             <br>
         @enderror
+
+        <br>
+
+        <label>
+
+            Foto de perfil
+            <br>
+
+            <input type="file" name="photo">
+
+        </label>
 
         <br>
 

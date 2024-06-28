@@ -28,6 +28,8 @@ class TeacherFactory extends Factory
 
             'password' => $this -> faker -> password(),
 
+            'photo' => $this->faker ->sentence(),
+
         ];
     }
 }

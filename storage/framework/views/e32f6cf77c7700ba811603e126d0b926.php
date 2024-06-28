@@ -1,6 +1,8 @@
 
 <?php
 
+  use App\Models\Teacher;
+
   $rol = session()->get('rol');
 
   if($rol == 1){
@@ -13,8 +15,8 @@
 
   }
 
+  $teacher = Teacher::find(session()->get('teacherId'));
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -70,16 +72,11 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-danger">
 
-    <a class="navbar-brand" href="#">
 
       <!-- Use the HTML <img> tag to display the image -->
-	    <img src="acc/acc_mostrar_imagen.php" alt="Displayed image">
+	    <img src=<?php echo e(asset('/img/photo/'.$teacher->namePhoto)); ?> alt="foto de perfil" style="border-radius: 50%;" width="2%" >
       
-
-
-
-    </a>
-
+    
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -89,6 +86,7 @@
         <ul class="navbar-nav">
 
                 <strong><i class="bi bi-zoom-in"><?php echo e(session()->get('name')); ?> (<?php echo e($rol); ?>)</i></strong>&nbsp; &nbsp;
+
                 <li class="nav-item active">
                     <a class="<?php echo e(request()->routeIs('courses.index') ? 'active' : ''); ?>" href="<?php echo e(route('courses.index')); ?>"><i class="bi bi-0-circle"> Ver cursos</i><span class="sr-only">(current)</span></a>
                 </li>

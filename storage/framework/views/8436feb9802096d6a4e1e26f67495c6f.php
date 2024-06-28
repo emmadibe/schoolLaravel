@@ -6,7 +6,7 @@
 
     <h1><u><p>Hola, <?php echo e($teacher->name); ?>. Acá podrás editar tu perfil</u></p></h1>
 
-    <form action="<?php echo e(route('teachers.update', $teacher ->teacherId)); ?>" method="POST">
+    <form action="<?php echo e(route('teachers.update', $teacher ->teacherId)); ?>" method="POST" enctype="multipart/form-data">
 
         <?php echo csrf_field(); ?>
 
@@ -92,6 +92,17 @@ $message = $__bag->first($__errorArgs[0]); ?>
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+
+        <br>
+
+        <label>
+
+            Foto de perfil
+            <br>
+
+            <input type="file" name="photo">
+
+        </label>
 
         <br>
 

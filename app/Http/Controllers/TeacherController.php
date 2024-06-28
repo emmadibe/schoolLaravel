@@ -11,7 +11,7 @@ use App\Models\Teacher;
 use App\Http\Requests\UpdateTeacher;
 use App\Mail\NewUserMailable;
 use App\Http\Controllers\MailsController;
-
+use DragonCode\Support\Helpers\Str;
 use Illuminate\Support\Facades\Auth;
 
 class TeacherController extends Controller
@@ -74,6 +74,22 @@ class TeacherController extends Controller
         $teacher->password = $request->password;
         $teacher->branch = $request->branch;
         $teacher->rol = $request->session()->get('rol');
+
+        if($request->hasFile("photo")){
+
+            $photo =  $request->file("photo");
+            $str = new Str;
+            $namePhoto = $str->slug("photo").".".$teacherId.".".$photo->guessExtension(); //La propiedad guessExtension es la extensión. 
+
+            $ruta = public_path("img/photo/");
+
+            $photo->move($ruta, $namePhoto);
+
+            $teacher->namePhoto = $namePhoto;
+
+            $teacher->photo = $photo;
+
+        }
 
         $teacher->save();
 
