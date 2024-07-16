@@ -37,11 +37,28 @@ class TeacherController extends Controller
         $teacher -> email = $request -> email;
         $teacher -> password = $request -> password;
 
+        //////////Le pongo una foto de perfil genérica.
+
+        // Ruta donde deseas guardar la imagen en el servidor
+        $rutaDestino = public_path("img/photo/"); // Por ejemplo, la carpeta "imagenes" en el directorio público
+
+        // Nombre de la imagen que deseas asignar
+        $nombreImagen = 'generico.png'; // Puedes asignar el nombre que desees
+
+        // Mover la imagen desde tu computadora al servidor
+        $imagen = $request->file('photo'); // Obtener la imagen de la solicitud
+
+        $teacher->namePhoto = $nombreImagen;
+        $teacher->photo = $imagen;
+
+        ///////////////////////
+
         //Yo deseo que, cuando se cree el usuario, se le mande un mail:
         $newUser = new MailsController;
         $newUser->newUser($request);
+        //////////////////////////////
 
-        $teacher -> save();
+        $teacher -> save(); //Guardo el nuevo registro-usuario en la base de datos.
 
         $teacherId = Teacher::where([
             'name' => $teacher->name,

@@ -43,7 +43,9 @@ class StudentController extends Controller
 
             $gradesArray[0] = $request->grades;
 
-            $student->grades = $gradesArray;
+            $student->grades = array();
+
+            $student->grades = $gradesArray[0];
 
             $student->save();
 

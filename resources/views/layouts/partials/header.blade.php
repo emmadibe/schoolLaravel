@@ -74,10 +74,10 @@
 
 
       <!-- Use the HTML <img> tag to display the image -->
-	    <img src={{ asset('/img/photo/'.$teacher->namePhoto) }} alt="foto de perfil" style="border-radius: 50%;" width="2%" >
-      
-    
-
+      @if($teacher)
+            <img src={{ asset('/img/photo/'.$teacher->namePhoto) }} alt="foto de perfil" style="border-radius: 50%;" width="2%" >
+      @endif
+	      
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
